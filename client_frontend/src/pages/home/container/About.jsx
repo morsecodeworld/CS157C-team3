@@ -100,7 +100,7 @@ const About = () => {
                 <div className="ml-2 grow">
                   <p className="mb-1 font-bold text-gray-800">Support 24/7</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Pellentesque mollis, metus nec fringilla aliquam
+          
                   </p>
                 </div>
               </div>
@@ -127,7 +127,7 @@ const About = () => {
                 <div className="ml-2 grow">
                   <p className="mb-1 font-bold text-gray-800">Tracking</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Magna lacus iaculis elit, quis pharetra varius.
+                   
                   </p>
                 </div>
               </div>
@@ -154,7 +154,7 @@ const About = () => {
                 <div className="ml-2 grow">
                   <p className="mb-1 font-bold text-gray-800">Reporting</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Pellentesque varius ex vel consequat quis.
+                  
                   </p>
                 </div>
               </div>
@@ -181,7 +181,7 @@ const About = () => {
                 <div className="ml-2 grow">
                   <p className="mb-1 font-bold text-gray-800">Analytics</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Vestibulum gravida iaculis nisl, vel lobortis eros.
+                    
                   </p>
                 </div>
               </div>
@@ -206,9 +206,9 @@ const About = () => {
                   </svg>
                 </div>
                 <div className="ml-2 grow">
-                  <p className="mb-1 font-bold text-gray-800">Huge community</p>
+                  <p className="mb-1 font-bold text-gray-800">Smart Inventory Notifications</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Praesent vulputate lacus bibendum augue .
+                    
                   </p>
                 </div>
               </div>
@@ -235,7 +235,7 @@ const About = () => {
                 <div className="ml-2 grow">
                   <p className="mb-1 font-bold text-gray-800">Easy to use</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Sed mauris ex, imperdiet sit amet nisl ac, ultrices.
+                    
                   </p>
                 </div>
               </div>
@@ -262,7 +262,7 @@ const About = () => {
                 <div className="ml-2 grow">
                   <p className="mb-1 font-bold text-gray-800">Frequent updates</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Aenean lectus ex, placerat id tellus in eros.
+                   
                   </p>
                 </div>
               </div>
@@ -289,7 +289,7 @@ const About = () => {
                 <div className="ml-2 grow">
                   <p className="mb-1 font-bold text-gray-800">Responsive</p>
                   <p className="text-neutral-500 dark:text-neutral-300">
-                    Donec consequat orci quis volutpat imperdiet.
+                   
                   </p>
                 </div>
               </div>
