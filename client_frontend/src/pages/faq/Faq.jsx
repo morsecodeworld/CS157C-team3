@@ -34,34 +34,24 @@ const FAQPage = () => {
 
             <div className="mb-6 md:mb-0">
               <p className="mb-4 font-bold">
-                Anim pariatur cliche reprehenderit?
+                Question 1
               </p>
               <p className="mb-12 text-neutral-500 dark:text-neutral-300">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt
-                autem numquam dolore molestias aperiam culpa alias veritatis
-                architecto eos, molestiae vitae ex eligendi libero eveniet
-                dolorem, doloremque rem aliquid perferendis.
+            
               </p>
 
               <p className="mb-4 font-bold">
-                Non cupidatat skateboard dolor brunch?
+                Question 2
               </p>
               <p className="mb-12 text-neutral-500 dark:text-neutral-300">
-                Distinctio corporis, iure facere ducimus quos consectetur ipsa
-                ut magnam autem doloremque ex! Id, sequi. Voluptatum magnam sed
-                fugit iusto minus et suscipit? Minima sunt at nulla tenetur,
-                numquam unde quod modi magnam ab deserunt ipsam sint aliquid
-                dolores libero repellendus cupiditate mollitia quidem dolorem
-                odit
+              
               </p>
 
               <p className="mb-4 font-bold">
-                Praesentium voluptatibus temporibus consequatur non aspernatur?
+                Question 3
               </p>
               <p className="mb-12 text-neutral-500 dark:text-neutral-300">
-                Minima sunt at nulla tenetur, numquam unde quod modi magnam ab
-                deserunt ipsam sint aliquid dolores libero repellendus
-                cupiditate mollitia quidem dolorem.
+               
               </p>
             </div>
           </div>
