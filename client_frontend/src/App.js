@@ -12,6 +12,14 @@ import ContactPage from "./pages/contact/Contact";
 import PricingPage from "./pages/pricing/Pricing";
 import FAQPage from "./pages/faq/Faq";
 
+import Dashboard2Page from "./pages/dashboard2/Dashboard2";
+import FAQSupportPage from "./pages/faq_support/faq_support";
+import ManageStocksPage from "./pages/manage_stocks/Manage_stocks";
+import AddProductPage from "./pages/add_product/Add_product";
+import Account from "./pages/account/Account";
+import ManageStocksEditPage from "./pages/manage_stocks_edit_product/Manage_stocks_edit_product";
+
+
 // admin
 import Home from "./admin/pages/Home";
 
@@ -36,6 +44,14 @@ function App() {
         <Route path="*" element={<HomePage />} />
         {/* admin routes */}
         <Route path="/dashboard" element={<Home />} />
+
+        <Route path="/dashboard2" element={<Dashboard2Page /> } />
+        <Route path="/faq_support" element={<FAQSupportPage />} />
+        <Route path="/manage_stocks" element={<ManageStocksPage />} />
+        <Route path="/manage_stocks_edit_product/:productID" element={<ManageStocksEditPage />} />
+        <Route path="/add_product" element={<AddProductPage/>} />
+        <Route path="/account" element={<Account/>} />
+
       </Routes>
       <Toaster />
     </div>
