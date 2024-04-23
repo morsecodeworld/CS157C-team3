@@ -6,7 +6,7 @@ Install the package in your project directory with:
 ### `npm install @mui/x-data-grid`
 ### `npm install @emotion/styled`
 
-====================================================================================================
+=========================================================================
 
 # Getting Started with Create React App
 
