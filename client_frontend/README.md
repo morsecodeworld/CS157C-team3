@@ -2,7 +2,7 @@
 ### Frontend design: dashboard, manage stock, add product, FAQ, Account.
 
 
-Install the package in your project directory with:
+Install the package in the project directory (client_frontend) with:
 ### `npm install @mui/x-data-grid`
 ### `npm install @emotion/styled`
 
