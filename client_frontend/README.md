@@ -1,5 +1,5 @@
 
-### Frontend design: dashboard, manage stock, add product, FAQ, Account.
+### Frontend design: Dashboard, Manage Stock, Add Product, FAQ, Account.
 
 
 Install the package in the project directory (client_frontend) with:
