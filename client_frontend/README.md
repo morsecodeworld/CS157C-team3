@@ -1,10 +1,10 @@
 
-## Frontend design: dashboard, manage stock, add product, FAQ, Account.
+### Frontend design: dashboard, manage stock, add product, FAQ, Account.
 And merge back to main.
 
 Install the package in your project directory with:
-npm install @mui/x-data-grid
-npm install @emotion/styled
+### `npm install @mui/x-data-grid`
+### `npm install @emotion/styled`
 
 ====================================================================================================
 
