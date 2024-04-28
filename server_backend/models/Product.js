@@ -45,10 +45,7 @@ const productSchema = new mongoose.Schema(
         productIsNew: {
             type: Boolean,
             required: true,
-        },
-        stripeId: {
-            type: String,       
-        },
+        }
 
 }, { timestamps: true }   
  );
