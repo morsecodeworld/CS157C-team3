@@ -1,3 +1,15 @@
+
+### Frontend design: Dashboard, Manage Stock, Add Product, FAQ, Account.
+
+
+Install the package in the project directory (client_frontend) with:
+### `npm install @mui/x-data-grid`
+### `npm install @emotion/styled`
+
+
+
+=========================================================================
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
