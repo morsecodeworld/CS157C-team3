@@ -1,6 +1,3 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -11,26 +8,25 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+        lowercase: true,
+        validate: [validator.isEmail, 'Please provide a valid email'],
     },
     password: {
         type: String,
         required: true,
+        minlength: 8,
     },
     role: {
         type: String,
-        default: 'user', // can be changed to admin
+        default: 'user',
     }
 }, { timestamps: true });
 
-// Middleware to hash password before saving a user
 userSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next(); // hashes if password is changed or new
-    this.password = await bcrypt.hash(this.password, 12); 
+    if (!this.isModified('password')) return next();
+    this.password = await bcrypt.hash(this.password, 12);
     next();
 });
 
-
 const User = mongoose.model('User', userSchema);
-
 export default User;
-

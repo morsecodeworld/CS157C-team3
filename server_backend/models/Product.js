@@ -1,56 +1,48 @@
-import mongoose from 'mongoose';
+const productSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    images: [{ url: String, alt: String }],
+    brand: {
+        type: String,
+        required: true,
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true,
+    },
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review',
+    }],
+    rating: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 5,
+    },
+    numberOfReviews: {
+        type: Number,
+        default: 0,
+    },
+    price: {
+        type: Number,
+        required: true,
+        min: 0,
+    },
+    stock: {
+        type: Number,
+        required: true,
+        min: 0,
+    },
+    productIsNew: {
+        type: Boolean,
+        required: true,
+    }
+}, { timestamps: true });
 
-const productSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-        },
-        images: {
-            type: Array,
-            required: true,
-            default: [],
-        },
-        brand: {
-            type: String,
-            required: true,
-        },
-        category: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Category',
-            required: true,
-        },
-        reviews: {
-            type: Array,
-            required: true,
-            default: [],
-        },
-        rating: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-        numberOfReviews: {
-            type: Number,
-            required: true,
-        },
-        price: {
-            type: Number,
-            required: true,
-        },
-        stock: {
-            type: Number,
-            required: true,
-        },
-        productIsNew: {
-            type: Boolean,
-            required: true,
-        }
-
-}, { timestamps: true }   
- );
-
-
- // use the created schemas
- const Product = mongoose.model('Product', productSchema);
- export default Product; 
+const Product = mongoose.model('Product', productSchema);
+export default Product;
