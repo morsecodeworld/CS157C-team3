@@ -1,66 +1,72 @@
 import express from 'express';
-import Product from '../models/Product.js';  
+import Product from '../models/Product.js';
+import { body, validationResult } from 'express-validator';
 
 const productRoutes = express.Router();
 
-// GET request to fetch all products
 const getProducts = async (req, res) => {
     const products = await Product.find({});
-    res.json({ products, pagination: {} });  // for pagination maybe
+    res.json({ success: true, data: { products }, pagination: {} });
 };
 
-// POST request to add a new product
-const createProduct = async (req, res) => {
-    try {
-        const newProduct = new Product({
-            name: req.body.name,
-            images: req.body.images || [], 
-            brand: req.body.brand,
-            category: req.body.category,
-            reviews: req.body.reviews || [], 
-            rating: req.body.rating || 0,
-            numberOfReviews: req.body.numberOfReviews || 0,
-            price: req.body.price,
-            stock: req.body.stock,
-            productIsNew: req.body.productIsNew
-        });
-        await newProduct.save();
-        res.status(201).json(newProduct);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
+const validateProduct = [
+    body('name').notEmpty().withMessage('Name is required'),
+    body('price').isFloat({ min: 0 }).withMessage('Valid price is required'),
+    // Add more validations as necessary
+];
 
-// PUT request to update an existing product
-const updateProduct = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
-        if (!updatedProduct) {
-            return res.status(404).json({ message: "Product not found" });
+const createProduct = [
+    validateProduct,
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ success: false, errors: errors.array() });
         }
-        res.json(updatedProduct);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
 
-// DELETE request to remove a product
+        try {
+            const newProduct = new Product(req.body);
+            await newProduct.save();
+            res.status(201).json({ success: true, data: newProduct });
+        } catch (error) {
+            res.status(400).json({ success: false, message: error.message });
+        }
+    }
+];
+
+const updateProduct = [
+    validateProduct,
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ success: false, errors: errors.array() });
+        }
+
+        const { id } = req.params;
+        try {
+            const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
+            if (!updatedProduct) {
+                return res.status(404).json({ success: false, message: "Product not found" });
+            }
+            res.json({ success: true, data: updatedProduct });
+        } catch (error) {
+            res.status(400).json({ success: false, message: error.message });
+        }
+    }
+];
+
 const deleteProduct = async (req, res) => {
     const { id } = req.params;
-
     try {
         const product = await Product.findByIdAndDelete(id);
         if (!product) {
-            return res.status(404).json({ message: "Product not found" });
+            return res.status(404).json({ success: false, message: "Product not found" });
         }
-        res.json({ message: "Product deleted successfully" });
+        res.json({ success: true, message: "Product deleted successfully" });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ success: false, message: error.message });
     }
 };
 
-// Route definitions
 productRoutes.route('/').get(getProducts).post(createProduct);
 productRoutes.route('/:id').put(updateProduct).delete(deleteProduct);
 
