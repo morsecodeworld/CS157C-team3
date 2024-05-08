@@ -1,19 +1,27 @@
 import express from 'express';
-import Product from '../models/Product.js';
+import {
+    createProduct,
+    getProducts,
+    getProductById,
+    updateProduct,
+    deleteProduct
+} from '../controllers/productController.js';
 
+const router = express.Router();
 
-const productRoutes = express.Router();
+// Route for creating a new product
+router.post('/', createProduct);
 
-const getProducts = async (req, res) => {
-    const products = await Product.find({});
+// Route for retrieving all products
+router.get('/', getProducts);
 
-    res.json({
-        products,
-        pagination: {},
+// Route for retrieving a single product by ID
+router.get('/:id', getProductById);
 
-    });
-};
+// Route for updating a product by ID
+router.put('/:id', updateProduct);
 
-productRoutes.route('/').get(getProducts);
+// Route for deleting a product by ID
+router.delete('/:id', deleteProduct);
 
-export default productRoutes;
+export default router;
