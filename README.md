@@ -9,4 +9,3 @@ Then, change directory to CS157C-team3, and run following command:
 
 Purpose: To run client_frontend & server_backend concurrently. 
 
-=========================================================================
