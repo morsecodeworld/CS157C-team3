@@ -15,9 +15,12 @@ app.use(cors());
 
 app.use('/api/products', productRoutes);
 
-//localhost:5000/api/products
+//localhost:3000/api/products
+const port = 3000;
 
-const port = 5000;
+
+//schema is located at /models/Product.js
+
 
 app.get('/', (req, res) => {
     res.send('API is working...');

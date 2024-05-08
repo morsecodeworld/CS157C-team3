@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import { DataGrid } from '@mui/x-data-grid';
-import { ProductDataRows } from "../../testingProductData";
 import { Link } from "react-router-dom";
-
+import axios from 'axios';
 
 const Manage_stocks = () => {
-     
-      // use React useState hook to managee state within functional component
-      const [prodcutData,setProductData] = useState(ProductDataRows);
+      
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    axios.
+      get('/api/products')
+      .then((response) => {
+        setData(response.data.products);
+      })
+      .catch((error) =>  {
+        console.error('Error fetching data:', error);
+    });
+  }, []);
 
       //pass the id to deleteFunciton and filter the prodcut Data with the specific id
       const deleteFunction = (id) => {
-        setProductData(prodcutData.filter(productItem=>productItem.id !== id))
+        setData(data.filter(productItem=>productItem.id !== id))
       };
 
       //To arrange the columns of a table. Each object in the array shows one column 
@@ -83,9 +92,18 @@ const Manage_stocks = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Stock Management</h2>
             <p className="text-gray-600 text-lg">
      
-            <DataGrid
-        rows={prodcutData}
-        //   rows={productRows}
+            <DataGrid          
+        rows={data.map(product => ({
+          id: product._id,
+          productname: product.product_name, 
+          brand: product.brand,
+          category: product.category,
+          price: product.price,
+          quantity: product.quantity,
+          amount: product.amount
+        }))}
+
+
         columns={columns}
         initialState={{
           pagination: {
