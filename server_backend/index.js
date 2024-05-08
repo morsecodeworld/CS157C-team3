@@ -18,10 +18,7 @@ app.use('/api/products', productRoutes);
 //localhost:3000/api/products
 const port = 3000;
 
-
 //schema is located at /models/Product.js
-
-
 app.get('/', (req, res) => {
     res.send('API is working...');
 });

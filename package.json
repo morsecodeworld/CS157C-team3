@@ -5,9 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "server_backend": "node server_backend/index.js",
-    "client_frontend": "npm run start --prefix client_frontend",
-    "app": "concurrently set npm \"npm run server_backend\" \"npm run client_frontend\""
+    "server_backend": "node server_backend/index.js"   
   },
   "keywords": [],
   "author": "",
