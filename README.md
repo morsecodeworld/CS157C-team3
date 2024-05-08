@@ -1,11 +1,15 @@
+Run the code:
 
-### Install the package in the project directory (server_backen) with:
+### change directory to CS157C-team3
 
-### `npm install concurrently` 
+### `npm run server_backend` 
 
-Then, change directory to CS157C-team3, and run following command:
+### change directory to client_frontend
 
-### `npm run app`
+### `npm start`
 
 Purpose: To run client_frontend & server_backend concurrently. 
+
+
+
 
