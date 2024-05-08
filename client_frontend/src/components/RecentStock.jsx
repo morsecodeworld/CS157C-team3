@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataGrid } from '@mui/x-data-grid';
-import { ProductDataRows } from "../testingProductData";
+
+
+//make a request from server
+import axios from 'axios';
 
 const RecentStock = () => {
-     
-      // use React useState hook to managee state within functional component
-      const [prodcutData] = useState(ProductDataRows);     
+  
+     // use React useState hook to managee state within functional component
+    const [data, setData] = useState([])
 
+    useEffect(() => {
+      axios.
+        get('/api/products')
+        .then((response) => {
+          setData(response.data.products);
+        })
+        .catch((error) =>  {
+          console.error('Error fetching data:', error);
+      });
+    }, []);
+     
       //To arrange the columns of a table. Each object in the array shows one column 
       //in the grid displayed. 
   const columns = [
-    { field: 'id', headerName: 'No', width: 70 },
+    { field: 'id', headerName: 'No', width: 10 },
     { field: 'productname', headerName: 'Product Name', width: 450 },
     { field: 'brand', headerName: 'Brand', width: 150 },
     { field: 'category', headerName: 'Category', width: 130 },
@@ -45,8 +59,16 @@ const RecentStock = () => {
             <p className="text-gray-600 text-lg">
    
                     <DataGrid
-                rows={prodcutData}
-                //   rows={productRows}
+                rows={data.map(product => ({
+                  id: product._id,
+                  productname: product.product_name, 
+                  brand: product.brand,
+                  category: product.category,
+                  price: product.price,
+                  quantity: product.quantity,
+                  amount: product.amount
+                }))}
+                
                 columns={columns}
                 initialState={{
                 pagination: {
