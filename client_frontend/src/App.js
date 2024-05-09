@@ -1,61 +1,75 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
+// App.js
+import React, { Suspense, lazy } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import LayoutWrapper from "./components/LayoutWrapper";
+import theme from "./theme";
+import Loader from "./components/Loader";
+import { AuthProvider } from "./context/AuthContext";
+import "./i18n";
 
-import "./App.css";
-import HomePage from "./pages/home/HomePage";
-import RegisterPage from "./pages/register/RegisterPage";
-import LoginPage from "./pages/login/LoginPage";
-import ProfilePage from "./pages/profile/ProfilePage";
-import AboutPage from "./pages/about/About";
-import ContactPage from "./pages/contact/Contact";
-import PricingPage from "./pages/pricing/Pricing";
-import FAQPage from "./pages/faq/Faq";
+// Lazy load the modules
+const Login = lazy(() => import("./modules/Auth/Login"));
+const Register = lazy(() => import("./modules/Auth/Register"));
+const Dashboard = lazy(() => import("./modules/Dashboard/Dashboard"));
+const InventoryPage = lazy(() => import("./modules/Inventory/InventoryPage"));
+const ProfilePage = lazy(() => import("./modules/Profile/ProfilePage"));
+const Settings = lazy(() => import("./modules/Settings/Settings"));
+const CategoriesPage = lazy(() =>
+  import("./modules/Categories/CategoriesPage")
+);
+const OrdersPage = lazy(() => import("./modules/Orders/OrdersPage"));
+const OrderDetailsPage = lazy(() =>
+  import("./modules/Orders/OrderDetailsPage")
+);
+const Logout = lazy(() => import("./modules/Auth/Logout"));
+const ForgotPassword = lazy(() => import("./modules/Auth/ForgotPassword"));
+const PasswordReset = lazy(() => import("./modules/Auth/PasswordReset"));
 
-import Dashboard2Page from "./pages/dashboard2/Dashboard2";
-import FAQSupportPage from "./pages/faq_support/faq_support";
-import ManageStocksPage from "./pages/manage_stocks/Manage_stocks";
-import AddProductPage from "./pages/add_product/Add_product";
-import Account from "./pages/account/Account";
-import ManageStocksEditPage from "./pages/manage_stocks_edit_product/Manage_stocks_edit_product";
+const defaultTheme = createTheme(theme);
 
-
-// admin
-import Home from "./admin/pages/Home";
-
-function App() {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
+const App = () => {
   return (
-    <div className="App">
-      <Routes>
-        <Route index path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/pricing" element={<PricingPage />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="*" element={<HomePage />} />
-        {/* admin routes */}
-        <Route path="/dashboard" element={<Home />} />
-
-        <Route path="/dashboard2" element={<Dashboard2Page /> } />
-        <Route path="/faq_support" element={<FAQSupportPage />} />
-        <Route path="/manage_stocks" element={<ManageStocksPage />} />
-        <Route path="/manage_stocks_edit_product/:productID" element={<ManageStocksEditPage />} />
-        <Route path="/add_product" element={<AddProductPage/>} />
-        <Route path="/account" element={<Account/>} />
-
-      </Routes>
-      <Toaster />
-    </div>
+    <AuthProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <CssBaseline />
+        <Router>
+          <LayoutWrapper>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route
+                  path="/password-reset/:token"
+                  element={<PasswordReset />}
+                />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/categories" element={<CategoriesPage />} />
+                <Route path="/inventory" element={<InventoryPage />} />
+                <Route path="/orders" element={<OrdersPage />} />
+                <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/" element={<Navigate replace to="/login" />} />
+                <Route
+                  path="*"
+                  element={<Navigate replace to="/dashboard" />}
+                />
+              </Routes>
+            </Suspense>
+          </LayoutWrapper>
+        </Router>
+      </ThemeProvider>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
